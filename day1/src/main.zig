@@ -14,7 +14,7 @@ pub fn main() !void {
     var buf_reader = std.io.bufferedReader(file.reader());
     var in_stream = buf_reader.reader();
     var current: u32 = 0;
-    var most: u32 = 0;
+    var most: [3]u32 = [3]u32{0,0,0};
     var list = std.ArrayList(u32).init(gpa);
     defer list.deinit();
     var tmp: u32 = 0;
@@ -26,8 +26,8 @@ pub fn main() !void {
             var slice = list.toOwnedSlice();
             defer gpa.free(slice);
             tmp = total(slice);
-            if (tmp > most){
-                most = tmp;
+            if ((tmp > most[0]) or (tmp > most[1]) or (tmp > most[2])){
+                replaceLowest(&most, tmp);
             }
         } else {
             //std.debug.print("buf len = {d}", .{line.len});
@@ -37,6 +37,7 @@ pub fn main() !void {
     }
 
     std.debug.print("most: {d}", .{most});
+    std.debug.print("total: {d}", .{total(&most)});
     // stdout is for the actual output of your application, for example if you
     // are implementing gzip, then only the compressed bytes should be sent to
     // stdout, not any debugging messages.
@@ -47,6 +48,18 @@ pub fn main() !void {
     // try stdout.print("Run `zig build test` to run the tests.\n", .{});
 
     // try bw.flush(); // don't forget to flush!
+}
+
+pub fn replaceLowest(slice: []u32, input: u32) void{
+    if ((slice[0] <= slice[1]) and (slice[0] <= slice[2])){
+        slice[0] = input;
+    }
+    else if ((slice[1] <= slice[0]) and (slice[1] <= slice[2])){
+        slice[1] = input;
+    }
+    else if ((slice[2] <= slice[1]) and (slice[2] <= slice[0])){
+        slice[2] = input;
+    }
 }
 
 pub fn total(list: []const u32) u32 {
