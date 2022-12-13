@@ -13,5 +13,5 @@ I tried doing each day in a different language
 | 8 | C++ | No |
 | 9 | C# | No |
 | 10 | Nelua | N/A |
-| 11 | N/A | N/A |
-| 12 | N/A | N/A |
+| 11 | Haskell | N/A |
+| 12 | Scala | N/A |
