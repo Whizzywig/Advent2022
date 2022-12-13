@@ -12,6 +12,6 @@ I tried doing each day in a different language
 | 7 | C | No |
 | 8 | C++ | No |
 | 9 | C# | No |
-| 10 | N/A | N/A |
+| 10 | nelua | N/A |
 | 11 | N/A | N/A |
 | 12 | N/A | N/A |
