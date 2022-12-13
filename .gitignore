@@ -3,3 +3,5 @@
 */zig-cache
 */*.exe
 /.vscode
+/.lsp
+/.clj-kondo
